@@ -1,0 +1,42 @@
+#+TITLE: Upup source overview
+#+AUTHOR: tazjin+k8s@gmail.com
+
+* Questions
+** What's "fi"?
+** Is there a point at which the "whole" cluster state is visible & that still lets us add changes? (i.e. check if any private IGs exist -> add more resources for that)
+** Simple description of execution - what happens? When are upup, nodeup, cloudup etc. invoked and from where?
+** How are resource references passed around? (e.g. subnet IDs)
+** In the awstask types, what's the difference between (and source of) names and IDs?
+** What's CompareWithID for?
+* Files in upup
+** cloud.go
+This file seems to control detection of cloud providers based on zone names
+** assetstore.go
+Something to do with storing (file?) assets, unique IDs, downloads mentioned
+** ca.go
+Implementation of cert-signing-related things, some mention of VFS being the CA store
+** changes.go
+Some kind of "task" diff implementation that walks through tasks (?) to figure out what is different.
+Q: What's a task and where do they come from?
+** compare_with_id.go
+Some interface to make comparing tasks quicker by using an ID instead of state inspection
+** context.go:
+???
+** default_methods.go:
+Dark reflection magic. ???
+** task.go:
+Interface implemented by task. Has a single run function that takes a context and produces an error.
+Also contains an interface that can be implemented
+** executor.go:
+Executes all the tasks
+Don't yet understand quite how this works and how task dependencies are defined
+* Files in upup/cloudup
+** apply_cluster.go:
+Seems to be a task (implements Run()) that is some kind of umbrella for applying a cluster?
+It builds up a map of string resource names (probably the ones in the model / weird template files?) to awstasks (don't care about GCE bits right now).
+I guess this is how it applies whatever is spat out by the templates. Still not sure where the template rendering actually happens?
+* Go stuff
+** Interfaces
+Interfaces are implemented simply by implementing functions with matching signatures on the types.
+Q: How to check if a type implements an interface?
+Q: What happens in a generic function taking an interface if one of the functions isn't implemented for that type?
