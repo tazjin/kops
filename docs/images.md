@@ -1,6 +1,6 @@
 # Images
 
-Changing the image for an instance group
+## Changing the image for an instance group
 
 You can choose a different AMI for an instance group.
 
@@ -18,7 +18,7 @@ For example, to use Ubuntu 16.04, you could specify:
 
 `image: 099720109477/ubuntu/images/hvm-ssd/ubuntu-xenial-16.04-amd64-server-20160830`
 
-(Please note that ubuntu is currently undergoing validation testing with k8s - use at your own risk!)
+(Please note that Ubuntu is currently undergoing validation testing with k8s - use at your own risk!)
 
 If you are creating a new cluster you can use the `--image` flag when running `kops create cluster`,
 which should be easier than editing your instance groups.

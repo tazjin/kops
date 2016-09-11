@@ -2,7 +2,7 @@ This is an overview of how we added a feature:
 
 To make auto-upgrading on the nodes an option.
 
-Auto-upgrades are configured by nodeup.  nodeup is driven by the nodeup model (which is at [upup/models/nodeup/](https://github.com/kubernetes/kops/tree/master/upup/models/nodeup) )
+Auto-upgrades are configured by nodeup. nodeup is driven by the nodeup model (which is at [upup/models/nodeup/](https://github.com/kubernetes/kops/tree/master/upup/models/nodeup) )
 
 Inside the nodeup model there are folders which serve three roles:
 
@@ -20,7 +20,7 @@ the same name is configured.
 So auto-upgrades are currently always enabled, so the folder `auto-upgrades` configures them.
 
 To make auto-upgrades option, we will rename it to a "tag" folder (`_automatic_upgrades`), and then plumb through
-the tag.  The rename is a simple file rename.
+the tag. The rename is a simple file rename.
 
 ## Passing the `_automatic_upgrades` tag to nodeup
 

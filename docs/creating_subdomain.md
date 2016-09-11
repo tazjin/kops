@@ -1,13 +1,13 @@
-##Creating a Subdomain That Uses Amazon Route 53 as the DNS Service without Migrating the Parent Domain
-<hr>
+# Delegating a subdomain to Amazon Route53
+## Subdomain creation without migrating the parent domain
 
 You can create a subdomain that uses Amazon Route 53 as the DNS service without migrating the parent domain from another DNS service.
 
-example :
+Example:
 
-Your main domain is `example.com` but you want to create a subdomain NameServer.
+Your main domain is `example.com` but you want to create a subdomain of `k8s.example.com`.
 
-Stat of your domain.
+### Check current status of your domain:
 
 > dig ns example.com
 
@@ -19,16 +19,17 @@ Stat of your domain.
 example.com.		3600	IN	NS	ns3.somensserver.com.
 ```
 
-## Create Subdomain
+### Create subdomain
+
 You want to keep those records, now lets create the subdomain.
 
-On your `route 53` create the subdomain :
+On your `Route 53` create the subdomain:
 
-`Create Hosted zone`
+`Create hosted zone`
 
 Fill up the box `Domain Name:` with your subdomain : k8s.example.com
 
-`Route 53` should generate your NS server like :
+`Route 53` should generate your NS server like:
 
 ```
 ;; ANSWER SECTION:
@@ -52,5 +53,4 @@ k8s.example.com.		172800	IN	NS	ns-1022.awsdns-35.com.
 k8s.example.com.		172800	IN	NS	ns-1149.awsdns-27.co.uk.
 ```
 
-Wait until the NS replication is ok
-
+Wait until the DNS records have propagated.

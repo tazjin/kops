@@ -1,9 +1,9 @@
 # Instance Groups
 
-kops has the concept of "instance groups", which are a group of similar machines.  On AWS, they map to
-an AutoScalingGroup.
+kops has the concept of "instance groups", which are a group of similar machines. On AWS they map to
+Auto Scaling groups.
 
-By default, a cluster has:
+By default a cluster has:
 
 * An instance group called `nodes` spanning all the zones; these instances are your workers.
 * One instance group for each master zone, called `master-<zone>` (e.g. `master-us-east-1c`).  These normally have
@@ -27,7 +27,7 @@ You can also use the `kops get ig` alias.
 
 First you edit the instance group spec, using `kops edit ig nodes`.  Change the machine type to `t2.large`,
 for example.  Now if you `kops get ig`, you will see the large instance size.  Note though that these changes
-have not yet been applied (this may change soon though!).
+are currently not applied automatically (this may change soon though!).
 
 To preview the change:
 
@@ -48,7 +48,7 @@ See a preview with: `kops rolling-update cluster`
 
 Then restart the machines with: `kops rolling-update cluster --yes`
 
-NOTE: rolling-update does not yet perform a real rolling update - it just shuts down machines in sequence with a delay;
+**NOTE**: rolling-update does not yet perform a real rolling update - it just shuts down machines in sequence with a delay;
  there will be downtime [Issue #37](https://github.com/kubernetes/kops/issues/37)
 
 ## Resize an instance group
