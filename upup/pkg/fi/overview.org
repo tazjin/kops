@@ -3,6 +3,7 @@
 
 * Questions
 ** What's "fi"?
+@justins says "fast-install"
 ** Is there a point at which the "whole" cluster state is visible & that still lets us add changes? (i.e. check if any private IGs exist -> add more resources for that)
 ** Simple description of execution - what happens? When are upup, nodeup, cloudup etc. invoked and from where?
 ** How are resource references passed around? (e.g. subnet IDs)
