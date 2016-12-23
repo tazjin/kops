@@ -62,6 +62,11 @@ func (s *S3Context) getRegionForBucket(bucket string) (string, error) {
 		return s.bucketLocations[bucket]
 	}()
 
+	// If region is not specified, first attempt to load it from the environment.
+	if region != "" {
+		region = os.Getenv("KOPS_STATE_S3_REGION")
+	}
+
 	if region != "" {
 		return region, nil
 	}
